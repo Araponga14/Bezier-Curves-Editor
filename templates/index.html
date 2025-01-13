@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Curvas de Bézier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Editor Interativo de Curvas de Bézier</h1>
+    <canvas id="bezierCanvas"></canvas>
+    <p>Clique para adicionar pontos. Arraste para mover. Clique em um ponto para removê-lo.</p>
+    <button onclick="clearCanvas()">Limpar</button>
+    <input type="number" id="segmentInput" value="50">
+    <button onclick="updateCurve()">Atualizar Segmentos</button>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
