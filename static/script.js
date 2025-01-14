@@ -5,12 +5,15 @@ canvas.height = 600;
 
 let points = [];
 let numSegments = 50;
-let selectedPoint = null;
 
 canvas.addEventListener('click', (event) => {
-    const x = event.offsetX, y = event.offsetY;
-    let found = false;
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
     
+    let found = false;
+
+    // Remover ponto se clicar próximo de um existente
     points.forEach((p, i) => {
         if (Math.hypot(p[0] - x, p[1] - y) < 10) {
             points.splice(i, 1);
@@ -35,6 +38,7 @@ function clearCanvas() {
 async function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Desenhar pontos de controle
     points.forEach(([x, y]) => {
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -43,6 +47,7 @@ async function draw() {
         ctx.stroke();
     });
 
+    // Enviar pontos para calcular a curva de Bézier
     if (points.length > 1) {
         let response = await fetch('/compute_bezier', {
             method: 'POST',
