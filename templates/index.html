@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor de Curvas de Bézier</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="../static/style.css"> 
 </head>
+
 <body>
-    <h1>Editor Interativo de Curvas de Bézier</h1>
-    <canvas id="bezierCanvas"></canvas>
-    <p>Clique para adicionar pontos. Arraste para mover. Clique em um ponto para removê-lo.</p>
-    <button onclick="clearCanvas()">Limpar</button>
-    <input type="number" id="segmentInput" value="50">
-    <button onclick="updateCurve()">Atualizar Segmentos</button>
+    <h1>Editor de Curvas de Bézier</h1>
+
+    <div class="controller">
+        <canvas id="bezierCanvas"></canvas>
+        <div class="segments">
+            <button id="clear-segments" onclick="clearCanvas()">Limpar</button>
+            <input type="number" id="segmentInput" value="50">
+            <button id="update-segments" onclick="updateCurve()">Atualizar Segmentos</button>
+        </div>
+    </div>
+
+    <div class="manual">
+        <h3>Como usar</h3>
+        <ul id="list">
+            <li>Clique em qualquer lugar do canvas para adicionar um ponto de controle.</li>
+            <li>Clique em um ponto para removê-lo.</li>
+            <li>Pressione e arraste um ponto para movê-lo.</li>
+            <li>Clique em 'Limpar' para remover todos os pontos.</li>
+            <li>Ajuste o número de segmentos e clique em 'Atualizar Segmentos' para definir a precisão da curva.</li>
+        </ul>
+    </div>
+
+    <footer id="link">
+        Feito por: Vinicius Silveira. 
+        <a href="https://araponga14.github.io/minha-pagina-portifolio/">Acesse minha página</a>
+    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
