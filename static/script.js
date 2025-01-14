@@ -1,5 +1,7 @@
 const canvas = document.getElementById('bezierCanvas');
 const ctx = canvas.getContext('2d');
+
+// Defina o tamanho lógico do canvas (independente do CSS)
 canvas.width = 800;
 canvas.height = 600;
 
@@ -8,8 +10,11 @@ let numSegments = 50;
 
 canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;  // Ajuste para escala horizontal
+    const scaleY = canvas.height / rect.height; // Ajuste para escala vertical
+
+    const x = (event.clientX - rect.left) * scaleX;
+    const y = (event.clientY - rect.top) * scaleY;
     
     let found = false;
 
